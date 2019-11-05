@@ -1,0 +1,17 @@
+<div class="card" >
+    <div class="card-body">
+        <p class="card-title">{{star.name}}</p>
+        <p class="star-type">{{ star.type }}</p>
+        <ul class="list-group" *ngIf="isFrontOrBackType()">
+            <li class="list-group-item star-library" *ngFor="let library of star.links">{{ library }}</li>
+        </ul>
+        <div *ngIf="isLibrary()">
+            <ul class="list-group">
+                <li class="list-group-item star-library" *ngFor="let front of frontStars">{{ front }}</li>
+            </ul>
+            <ul class="list-group" *ngIf="isLibrary()">
+                <li class="list-group-item star-library" *ngFor="let back of backStars">{{ back }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
