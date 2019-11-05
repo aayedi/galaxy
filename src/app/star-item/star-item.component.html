@@ -1,17 +1,11 @@
-<div class="card" >
-    <div class="card-body">
-        <p class="card-title">{{star.name}}</p>
-        <p class="star-type">{{ star.type }}</p>
-        <ul class="list-group" *ngIf="isFrontOrBackType()">
-            <li class="list-group-item star-library" *ngFor="let library of star.links">{{ library }}</li>
-        </ul>
-        <div *ngIf="isLibrary()">
-            <ul class="list-group">
-                <li class="list-group-item star-library" *ngFor="let front of frontStars">{{ front }}</li>
-            </ul>
-            <ul class="list-group" *ngIf="isLibrary()">
-                <li class="list-group-item star-library" *ngFor="let back of backStars">{{ back }}</li>
-            </ul>
-        </div>
-    </div>
-</div>
+<mat-card>
+  <mat-card-title>{{star.name}}</mat-card-title>
+  <mat-card-subtitle>{{ star.type }}</mat-card-subtitle>
+  <mat-card-content>{{ star.description | slice : 0 : 150}}...</mat-card-content>
+  <hr>
+  <mat-card-content>
+    <span class="star-relation" *ngFor="let library of star.links">
+        <a routerLink="">#{{ library }}</a>&nbsp;
+      </span>
+  </mat-card-content>
+</mat-card>

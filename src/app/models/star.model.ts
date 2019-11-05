@@ -1,6 +1,7 @@
 export interface Star  {
   id: number;
   name: string;
+  description: string;
   type: StarType;
   links: number[];
 }
