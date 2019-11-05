@@ -18,12 +18,14 @@ import {
   MatDialogModule
 } from '@angular/material';
 import { StarItemComponent } from './star-item/star-item.component';
+import { JsGalaxyComponent } from './js-galaxy/js-galaxy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StarListComponent,
-    StarItemComponent
+    StarItemComponent,
+    JsGalaxyComponent
   ],
   imports: [
     BrowserModule,

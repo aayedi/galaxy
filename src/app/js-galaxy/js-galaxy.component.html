@@ -1,0 +1,23 @@
+<h1 class="text-center js-galaxy-title">{{ title }}</h1>
+
+<p class="text-justify js-galaxy-description">{{ description }}</p>
+
+<hr>
+
+<div class="row">
+  <div class="col js-galaxy-card">
+    <h4 class="text-center">{{ frontConstellationCard.name }}</h4>
+    <img [src]="frontConstellationCard.logo" [alt]="frontConstellationCard.name">
+    <button class="btn btn-primary" [routerLink]="frontConstellationCard.link">More</button>
+  </div>
+  <div class="col js-galaxy-card">
+    <h4 class="text-center">{{ libraryConstellationCard.name }}</h4>
+    <img [src]="libraryConstellationCard.logo" [alt]="libraryConstellationCard.name">
+    <button class="btn btn-primary" [routerLink]="libraryConstellationCard.link">More</button>
+  </div>
+  <div class="col js-galaxy-card">
+    <h4 class="text-center">{{ backConstellationCard.name }}</h4>
+    <img [src]="backConstellationCard.logo" [alt]="backConstellationCard.name">
+    <button class="btn btn-primary" [routerLink]="backConstellationCard.link">More</button>
+  </div>
+</div>
