@@ -19,18 +19,22 @@ import {
 } from '@angular/material';
 import { StarItemComponent } from './star-item/star-item.component';
 import { JsGalaxyComponent } from './js-galaxy/js-galaxy.component';
+import { StarLinkComponent } from './star-link/star-link.component';
+import { TreeModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
     AppComponent,
     StarListComponent,
     StarItemComponent,
-    JsGalaxyComponent
+    JsGalaxyComponent,
+    StarLinkComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    TreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

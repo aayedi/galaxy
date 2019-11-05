@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { StarListComponent } from './star-list/star-list.component';
 import {JsGalaxyComponent} from './js-galaxy/js-galaxy.component';
+import { StarLinkComponent } from './star-link/star-link.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'front-constellation', component: StarListComponent},
   { path: 'back-constellation', component: StarListComponent},
   { path: 'library-constellation', component: StarListComponent},
+  { path: 'star/link/:id', component: StarLinkComponent},
   { path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 
