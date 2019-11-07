@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Star, StarType} from '../models/star.model';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateStarComponent} from '../create-star/create-star.component';
+import {StarService} from '../service/star.service';
 
 @Component({
   selector: 'app-star-list',
@@ -15,29 +16,31 @@ export class ConstellationComponent implements OnInit {
   constellation: Star[];
   title: string;
 
-  constructor(private router: ActivatedRoute, private dialog: MatDialog) {
-    this.constellation = STARS as Star[];
-  }
+  constructor(private router: ActivatedRoute, private dialog: MatDialog, private starService: StarService) {}
 
   ngOnInit() {
-    this.router.params.subscribe(params => {
-      const constellationType: StarType = params.constellationType.toUpperCase();
-      this.constellation = this.getConstellationByType(constellationType);
-    });
+    this.initConstellationSubscription();
+    this.router.params.subscribe(params => this.initConstellationByType(params.constellationType.toUpperCase()));
   }
 
-  getConstellationByType(constellationType: StarType): Star[] {
+  initConstellationSubscription() {
+    this.starService.allFrontStarsSubject.subscribe(stars => this.constellation = stars);
+    this.starService.allBackStarsSubject.subscribe(stars => this.constellation = stars);
+    this.starService.allLibraryStarsSubject.subscribe(stars => this.constellation = stars);
+  }
+
+  initConstellationByType(constellationType: StarType): void {
     if (constellationType === StarType.FRONT) {
       this.title = 'Front constellation';
-      return STARS.filter(star => star.type === StarType.FRONT) as Star[];
+      this.starService.getAllFrontStars();
     }
     if (constellationType === StarType.BACK) {
       this.title = 'Back constellation';
-      return STARS.filter(star => star.type === StarType.BACK) as Star[];
+      this.starService.getAllBackStars();
     }
     if (constellationType === StarType.LIBRARY) {
       this.title = 'Library constellation';
-      return STARS.filter(star => star.type === StarType.LIBRARY) as Star[];
+      this.starService.getAllLibraryStars();
     }
   }
 
@@ -50,7 +53,6 @@ export class ConstellationComponent implements OnInit {
     dialogRef.afterClosed().subscribe(response => {
       if (response) {
         response.data.id = 10;
-        console.log(response);
         this.constellation.push(response.data);
       }
     });

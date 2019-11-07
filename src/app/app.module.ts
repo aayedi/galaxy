@@ -13,8 +13,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CreateStarComponent } from './create-star/create-star.component';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatInputModule} from "@angular/material/input";
-import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { NavComponent } from './nav/nav.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import {MatSelectModule} from "@angular/material/select";
     StarItemComponent,
     JsGalaxyComponent,
     CreateStarComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import {MatSelectModule} from "@angular/material/select";
     MatRadioModule,
     MatInputModule,
     MatSelectModule,
+    MatMenuModule,
   ],
   entryComponents: [
     CreateStarComponent
