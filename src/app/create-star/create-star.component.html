@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Create a new star </h1>
+
+<form class="create-star" [formGroup]="createStarForm" (ngSubmit)="onSubmit(createStarForm.value)">
+  <span class="close-star-form" (click)="onClose()"><i class="fas fa-times"></i></span>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select a star type</mat-label>
+      <br>
+      <mat-select formControlName="type" required>
+        <mat-option class="star-radio-button"
+                    *ngFor="let type of types"
+                    [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button class="btn btn-success" type="submit" [disabled]="!createStarForm.valid">Create</button>
+</form>
+
