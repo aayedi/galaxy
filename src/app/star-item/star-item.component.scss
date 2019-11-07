@@ -1,0 +1,17 @@
+.start-description {
+  height: 100px;
+}
+.star-type {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.star {
+  position: relative;
+}
+.delete-star {
+  position: absolute;
+  right: 15px;
+  color: #ada2a2;
+  cursor: pointer;
+}

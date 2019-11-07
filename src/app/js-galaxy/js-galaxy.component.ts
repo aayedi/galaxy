@@ -21,18 +21,18 @@ export class JsGalaxyComponent implements OnInit {
     this.frontConstellationCard = {
       name: 'Front constellation',
       logo: 'https://www.whizsolutions.co.uk/wp-content/uploads/2018/08/maxresdefault.jpg',
-      link: '/front-constellation',
+      link: '/constellation/front',
     };
     this.backConstellationCard = {
       name: 'Back constellation',
       logo: 'https://miro.medium.com/max/3552/1*vUgaEEzxSp2YWsJ7p7jgjA.png',
-      link: '/back-constellation',
+      link: '/constellation/back',
     };
     this.libraryConstellationCard = {
       name: 'Library constellation',
       logo: 'https://image.slidesharecdn.com/mobx-state-treev1-171123215918/95/mobx-' +
         'statetree-the-new-generation-of-the-state-containers-8-638.jpg?cb=1511526842',
-      link: '/library-constellation',
+      link: '/constellation/library',
     };
   }
 
