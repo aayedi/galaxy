@@ -1,4 +1,5 @@
 <mat-card>
+  <span class="delete-star" (click)="onDeleteStar()"><i class="fas fa-times"></i></span>
   <mat-card-title>{{star.name}}</mat-card-title>
   <mat-card-subtitle>{{ star.type }}</mat-card-subtitle>
   <mat-card-content>{{ star.description | slice : 0 : 150}}...</mat-card-content>
