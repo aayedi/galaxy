@@ -1,0 +1,8 @@
+<h1 class="constellation-title title">{{ title }}</h1>
+<div class="row">
+    <app-star-item  class="col-4" *ngFor="let starItem of constellation" [star]=starItem (starEmitter)="onDeleteOneStar($event)"></app-star-item>
+</div>
+
+<div>
+  <button class="btn btn-danger constellation-plus" (click)="openStarForm()"><i class="fas fa-plus"></i></button>
+</div>
