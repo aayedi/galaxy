@@ -5,8 +5,8 @@
   <mat-card-content>{{ star.description | slice : 0 : 150}}...</mat-card-content>
   <hr>
   <mat-card-content>
-    <span class="star-relation" *ngFor="let library of star.links">
-        <a routerLink="">#{{ library }}</a>&nbsp;
+    <span class="star-relation" *ngFor="let link of star.links">
+        <a routerLink="">#{{ link }}</a>&nbsp;
       </span>
   </mat-card-content>
 </mat-card>

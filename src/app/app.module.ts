@@ -17,6 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { NavComponent } from './nav/nav.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {StarService} from './service/star.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import {MatMenuModule} from '@angular/material/menu';
   entryComponents: [
     CreateStarComponent
   ],
-  providers: [],
+  providers: [StarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

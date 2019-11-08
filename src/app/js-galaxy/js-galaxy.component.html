@@ -5,25 +5,11 @@
 <hr>
 
 <div class="row js-galaxy-cards">
-  <mat-card class="js-galaxy-card">
-    <mat-card-title>{{ frontConstellationCard.name }}</mat-card-title>
-    <img mat-card-image [src]="frontConstellationCard.logo" [alt]="frontConstellationCard.name">
+  <mat-card class="js-galaxy-card" *ngFor="let constellationCard of constellationsCard">
+    <mat-card-title>{{ constellationCard.name }}</mat-card-title>
+    <img mat-card-image [src]="constellationCard.logo" [alt]="constellationCard.name">
     <mat-card-content>
-      <button class="btn btn-primary" [routerLink]="frontConstellationCard.link">See the constellation</button>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="js-galaxy-card">
-    <mat-card-title>{{ libraryConstellationCard.name }}</mat-card-title>
-    <img mat-card-image [src]="libraryConstellationCard.logo" [alt]="libraryConstellationCard.name">
-    <mat-card-content>
-      <button class="btn btn-primary" [routerLink]="libraryConstellationCard.link">See the constellation</button>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="js-galaxy-card">
-    <mat-card-title>{{ backConstellationCard.name }}</mat-card-title>
-    <img mat-card-image [src]="backConstellationCard.logo" [alt]="backConstellationCard.name">
-    <mat-card-content>
-      <button class="btn btn-primary" [routerLink]="backConstellationCard.link">See the constellation</button>
+      <button class="btn btn-primary" [routerLink]="constellationCard.link">See the constellation</button>
     </mat-card-content>
   </mat-card>
 </div>

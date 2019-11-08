@@ -1,12 +1,10 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {STARS} from 'src/static/data';
 import {Star, StarType} from '../models/star.model';
 import {Subject} from 'rxjs';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class StarService {
 
   private allStars: Star[];
@@ -24,18 +22,18 @@ export class StarService {
     this.allFrontStarsSubject = new Subject<Star[]>();
     this.allBackStarsSubject = new Subject<Star[]>();
     this.allLibraryStarsSubject = new Subject<Star[]>();
-    this.getAllStars();
+    this.refreshAllStars();
   }
 
-  emitAllStarsSubject() {
+  emitAllStarsSubject(): void {
     this.allStarsSubject.next(this.allStars.slice());
   }
 
-  emitAllFrontStarsSubject() {
+  emitAllFrontStarsSubject(): void {
     this.allFrontStarsSubject.next(this.allFrontStars.slice());
   }
 
-  emitAllBackStarsSubject() {
+  emitAllBackStarsSubject(): void {
     this.allBackStarsSubject.next(this.allBackStars.slice());
   }
 
@@ -43,24 +41,48 @@ export class StarService {
     this.allLibraryStarsSubject.next(this.allLibraryStars.slice());
   }
 
-  getAllStars(): void {
+  refreshAllStars(): void {
     this.allStars = STARS as Star[];
-    console.log('getAllStars', this.allStars);
     this.emitAllStarsSubject();
   }
 
-  getAllFrontStars(): void {
+  refreshAllFrontStars(): void {
     this.allFrontStars = this.allStars.filter(star => star.type === StarType.FRONT);
     this.emitAllFrontStarsSubject();
   }
 
-  getAllBackStars(): void {
+  refreshAllBackStars(): void {
     this.allBackStars = this.allStars.filter(star => star.type === StarType.BACK);
     this.emitAllBackStarsSubject();
   }
 
-  getAllLibraryStars(): void {
+  refreshAllLibraryStars(): void {
     this.allLibraryStars = this.allStars.filter(star => star.type === StarType.LIBRARY);
     this.emitAllLibraryStarsSubject();
+  }
+
+  addOneStar(star: Star): void {
+    this.allStars.push(star);
+    this.emitAllStarsSubject();
+    this.refreshStarsByStarType(star.type);
+  }
+
+  refreshStarsByStarType(starType: StarType): void {
+    if (starType === StarType.FRONT) {
+      this.refreshAllFrontStars();
+    }
+    if (starType === StarType.BACK) {
+      this.refreshAllBackStars();
+    }
+    if (starType === StarType.LIBRARY) {
+      this.refreshAllLibraryStars();
+    }
+  }
+
+  deleteOneStar(star: Star): void {
+    const positionStarInConstellation = this.allStars.indexOf(star);
+    this.allStars.splice(positionStarInConstellation, 1);
+    this.emitAllStarsSubject();
+    this.refreshStarsByStarType(star.type);
   }
 }

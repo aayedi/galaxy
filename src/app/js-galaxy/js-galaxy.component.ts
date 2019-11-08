@@ -11,29 +11,31 @@ export class JsGalaxyComponent implements OnInit {
 
   title: string;
   description: string;
-  frontConstellationCard: ConstellationCard;
-  backConstellationCard: ConstellationCard;
-  libraryConstellationCard: ConstellationCard;
+  constellationsCard: ConstellationCard[];
 
   constructor() {
     this.title = 'The javascript galaxy';
     this.description = FAKE_CONTENT + FAKE_CONTENT + FAKE_CONTENT + FAKE_CONTENT + FAKE_CONTENT;
-    this.frontConstellationCard = {
+    const frontConstellationCard = {
       name: 'Front constellation',
       logo: 'https://www.whizsolutions.co.uk/wp-content/uploads/2018/08/maxresdefault.jpg',
       link: '/constellation/front',
     };
-    this.backConstellationCard = {
+    const backConstellationCard = {
       name: 'Back constellation',
       logo: 'https://miro.medium.com/max/3552/1*vUgaEEzxSp2YWsJ7p7jgjA.png',
       link: '/constellation/back',
     };
-    this.libraryConstellationCard = {
+    const libraryConstellationCard = {
       name: 'Library constellation',
       logo: 'https://image.slidesharecdn.com/mobx-state-treev1-171123215918/95/mobx-' +
         'statetree-the-new-generation-of-the-state-containers-8-638.jpg?cb=1511526842',
       link: '/constellation/library',
     };
+    this.constellationsCard = [];
+    this.constellationsCard.push(frontConstellationCard);
+    this.constellationsCard.push(backConstellationCard);
+    this.constellationsCard.push(libraryConstellationCard);
   }
 
   ngOnInit() {

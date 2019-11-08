@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {STARS} from 'src/static/data';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Star, StarType} from '../models/star.model';
 import {MatDialog} from '@angular/material/dialog';
@@ -11,19 +10,20 @@ import {StarService} from '../service/star.service';
   templateUrl: './constellation.component.html',
   styleUrls: ['./constellation.component.scss']
 })
-export class ConstellationComponent implements OnInit {
+export class ConstellationComponent implements OnInit, OnDestroy {
 
   constellation: Star[];
   title: string;
 
-  constructor(private router: ActivatedRoute, private dialog: MatDialog, private starService: StarService) {}
+  constructor(private router: ActivatedRoute, private dialog: MatDialog, private starService: StarService) {
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initConstellationSubscription();
     this.router.params.subscribe(params => this.initConstellationByType(params.constellationType.toUpperCase()));
   }
 
-  initConstellationSubscription() {
+  initConstellationSubscription(): void {
     this.starService.allFrontStarsSubject.subscribe(stars => this.constellation = stars);
     this.starService.allBackStarsSubject.subscribe(stars => this.constellation = stars);
     this.starService.allLibraryStarsSubject.subscribe(stars => this.constellation = stars);
@@ -32,15 +32,15 @@ export class ConstellationComponent implements OnInit {
   initConstellationByType(constellationType: StarType): void {
     if (constellationType === StarType.FRONT) {
       this.title = 'Front constellation';
-      this.starService.getAllFrontStars();
+      this.starService.refreshAllFrontStars();
     }
     if (constellationType === StarType.BACK) {
       this.title = 'Back constellation';
-      this.starService.getAllBackStars();
+      this.starService.refreshAllBackStars();
     }
     if (constellationType === StarType.LIBRARY) {
       this.title = 'Library constellation';
-      this.starService.getAllLibraryStars();
+      this.starService.refreshAllLibraryStars();
     }
   }
 
@@ -52,14 +52,24 @@ export class ConstellationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(response => {
       if (response) {
-        response.data.id = 10;
-        this.constellation.push(response.data);
+        this.starService.addOneStar(response.data);
       }
     });
   }
 
-  onDeleteOneStar(star: Star) {
-    const positionStarInConstellation = this.constellation.indexOf(star);
-    this.constellation.splice(positionStarInConstellation, 1);
+  onDeleteOneStar(star: Star): void {
+    this.starService.deleteOneStar(star);
+  }
+
+  ngOnDestroy(): void {
+    if (this.starService.allFrontStarsSubject != null) {
+      this.starService.allFrontStarsSubject.unsubscribe();
+    }
+    if (this.starService.allBackStarsSubject != null) {
+      this.starService.allBackStarsSubject.unsubscribe();
+    }
+    if (this.starService.allLibraryStarsSubject != null) {
+      this.starService.allLibraryStarsSubject.unsubscribe();
+    }
   }
 }

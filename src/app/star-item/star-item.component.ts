@@ -11,28 +11,12 @@ export class StarItemComponent implements OnInit {
 
   @Input()
   star: Star;
-  frontStars: Star[];
-  backStars: Star[];
   @Output()
   starEmitter = new EventEmitter<Star>();
 
-  constructor() {
-    this.frontStars = [];
-    this.backStars = [];
-  }
+  constructor() {}
 
-  ngOnInit() {
-
-    STARS.forEach((starItem) => {
-      if (this.star && this.star.links && this.star.links.indexOf(starItem.id) !== -1) {
-        if (starItem.type === StarType.FRONT) {
-          this.frontStars.push(starItem as Star);
-        } else if (starItem.type === StarType.BACK) {
-          this.backStars.push(starItem as Star);
-        }
-      }
-    });
-  }
+  ngOnInit() {}
 
   onDeleteStar(): void {
     this.starEmitter.emit(this.star);
